@@ -24,18 +24,35 @@ The primary challenge in this project was developing a reliable classification m
 ## Impact and Applications
 This project showcases the practical application of computer vision techniques in healthcare, demonstrating how deep learning can be effectively deployed even with limited data resources. The approach developed here can be extended to other medical imaging classification tasks where data scarcity and class imbalance are common challenges.
 
+## Main Project Results
+
+The screenshot below show that the male sex is predominant in this dataset.
 
 ![logo](images/1_gender_dist.png)
 
+The screenshot below points out that in this dataset the age distribution of the patients is more gaussian-like for males, while it is highly right-skewed for females, specially for females with age around 70 years.
+
 ![logo](images/2_gender_hist.png)
+
+The screenshot below shows a grid of (5x5) randomly chosen COVID X-Ray Images, which is meaning for the medic and essential for deep learning models in order to learn patterns for diagnosizing whether a given X-ray image is a COVID-19 case or not.
 
 ![logo](images/3_COVID_images.png)
 
+After dataset cleaning, the screenshot below shows the number of normal and COVID-19 X-ray images presented in the dataset. From this figure, it can be noticed that the classes are highly imbalanced, what makes the problem more challenging.
+
 ![logo](images/4_target_valuecounts.png)
+
+Several pre-trained models were trained and fine-tuned in order to find the most suitable model for this dataset. Among the attempted models, ResNet, VGG16, and VGG19 were trained and the best result was obtained for the VGG19 model by using weights from imagenet.
+
+After training the deep learning (VGG19) for 10 epochs by using a batch size of 4 images, below is shown a screenshot of the training and validation accuracies, from which the best model can be chosen automatically by presenting the highest validation accuracy, along with a consistent training accuracy.
 
 ![logo](images/5_train_val.png)
 
+Below it is shown the classification metrics on the test set, demonstrating it has good performance in the majority class (COVID-19 diagnoses), although presenting a reasonable performance in the minority class (normal diagnosis) according to the f1-score metrics. This reduced performance on the minority class might be related to the high class imbalance presented in the dataset, affecting the model learning for this specific class.  
+
 ![logo](images/6_confusionmatrix_metrics.png)
+
+The screenshot below shows the explicit confusion matrix of the best model in the test set, from which it is explicit that model was not able to learn very well the normal diagnosis pattern. In production, this result point out that normal diagnoses might be mistaken by COVID-19 cases and, so, these patients would receive COVID-19 treatment without needing it. However, the results here presented point out that all the patients suffering from COVID-19 would be correctly diagnosed and get the proper treatment, which is a good feature of this particular deep learning model. 
 
 ![logo](images/7_confusionmatrix.png)
 
